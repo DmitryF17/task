@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RomanToInt.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task</a> &gt; <a href="index.source.html" class="el_package">ru.task</a> &gt; <span class="el_source">RomanToInt.java</span></div><h1>RomanToInt.java</h1><pre class="source lang-java linenums">package ru.task;
+
+/**
+ * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+ * Symbol       Value
+ * I             1
+ * V             5
+ * X             10
+ * L             50
+ * C             100
+ * D             500
+ * M             1000
+ * For example, two is written as II in Roman numeral, just two one's added together. Twelve is written as, XII, which is simply X + II. The number twenty seven is written as XXVII, which is XX + V + II.
+ * Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+ * I can be placed before V (5) and X (10) to make 4 and 9.
+ * X can be placed before L (50) and C (100) to make 40 and 90.
+ * C can be placed before D (500) and M (1000) to make 400 and 900.
+ * Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+ * Example 1:
+ * Input: &quot;III&quot;
+ * Output: 3
+ * Example 2:
+ * Input: &quot;IV&quot;
+ * Output: 4
+ * Example 3:
+ * Input: &quot;IX&quot;
+ * Output: 9
+ * Example 4:
+ * Input: &quot;LVIII&quot;
+ * Output: 58
+ * Explanation: L = 50, V= 5, III = 3.
+ * Example 5:
+ * Input: &quot;MCMXCIV&quot;
+ * Output: 1994
+ * Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+ * I - 1
+ * V - 5
+ * X - 10
+ * L - 50
+ * C - 100
+ * D - 500
+ * M - 1000
+ * If I comes before V or X, subtract 1 eg: IV = 4 and IX = 9
+ * If X comes before L or C, subtract 10 eg: XL = 40 and XC = 90
+ * If C comes before D or M, subtract 100 eg: CD = 400 and CM = 900
+ */
+<span class="nc" id="L47">public class RomanToInt {</span>
+    private int romanToInt(String s) {
+<span class="nc" id="L49">        int res = 0;</span>
+<span class="nc" id="L50">        String[] sr = s.split(&quot;XL&quot;);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (sr == null) {</span>
+<span class="nc" id="L52">            res += 40;</span>
+        }
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            for (String ind : sr) {</span>
+<span class="nc" id="L55">                System.out.println(ind);</span>
+            }
+
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        for (String ind : sr) {</span>
+<span class="nc" id="L59">            char[] ind1 = ind.toCharArray();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            for (char t : ind1) {</span>
+<span class="nc bnc" id="L61" title="All 3 branches missed.">                switch (t) {</span>
+                    case 'I':
+<span class="nc" id="L63">                        res++;</span>
+<span class="nc" id="L64">                        break;</span>
+                    case 'V':
+<span class="nc" id="L66">                        res += 5;</span>
+                        break;
+                }
+
+            }
+            /**   res = s.replace(&quot;XL&quot;, &quot;40&quot;);
+             *  res.replace(&quot;XC&quot;, &quot;90&quot;);
+             */
+
+        }
+<span class="nc" id="L76">        return res;</span>
+    }
+        public static void main(String[] args) {
+
+<span class="nc" id="L80">            int res = new RomanToInt().romanToInt(&quot;IV&quot;);</span>
+<span class="nc" id="L81">            System.out.println(res);</span>
+<span class="nc" id="L82">        }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

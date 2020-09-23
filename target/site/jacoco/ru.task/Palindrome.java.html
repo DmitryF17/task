@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Palindrome.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task</a> &gt; <a href="index.source.html" class="el_package">ru.task</a> &gt; <span class="el_source">Palindrome.java</span></div><h1>Palindrome.java</h1><pre class="source lang-java linenums">package ru.task;
+
+/**
+ * Given a string, determine if it is a palindrome,
+ * considering only alphanumeric characters and ignoring cases.
+ * Note: For the purpose of this problem,
+ * we define empty string as valid palindrome.
+ * Example 1:
+ * Input: &quot;A man, a plan, a canal: Panama&quot;
+ * Output: true
+ * Example 2:
+ * Input: &quot;race a car&quot;
+ * Output: false
+ * Constraints:
+ * s consists only of printable ASCII characters.
+ */
+
+<span class="nc" id="L18">public class Palindrome {</span>
+    private boolean isPalindrome(String s) {
+<span class="nc" id="L20">        String sourc = s.toLowerCase().replaceAll(&quot;(?U)[\\W]&quot;, &quot;&quot;);</span>
+<span class="nc" id="L21">        String revers = new StringBuilder(sourc).reverse().toString();</span>
+<span class="nc" id="L22">        return sourc.equals(revers);</span>
+    }
+
+    public static void main(String[] args) {
+<span class="nc" id="L26">        var s = new Palindrome().isPalindrome(&quot;A man, a plan, a canal: Panama&quot;);</span>
+<span class="nc" id="L27">        var s1 = new Palindrome().isPalindrome(&quot;`l;`` 1o1 ??;l`&quot;);</span>
+<span class="nc" id="L28">        System.out.println(s);</span>
+<span class="nc" id="L29">        System.out.println(s1);</span>
+<span class="nc" id="L30">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

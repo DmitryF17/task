@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Process.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task</a> &gt; <a href="index.source.html" class="el_package">ru.task</a> &gt; <span class="el_source">Process.java</span></div><h1>Process.java</h1><pre class="source lang-java linenums">package ru.task;
+
+import java.util.*;
+
+/**
+ * public class User {
+ * private String name;
+ * private TreeSet&lt;String&gt; emails;
+ * -------
+ * Преобрзование
+ * emails    name
+ * ----------------
+ * email1 -&gt; name
+ * email2 -&gt; name
+ * emsil3 -&gt; name
+ */
+<span class="nc" id="L17">public class Process {</span>
+
+    private Map&lt;String, String&gt; process(ArrayList&lt;User&gt; source) {
+<span class="nc" id="L20">        Map&lt;String, String&gt; rs = new TreeMap&lt;&gt;();</span>
+<span class="nc" id="L21">        source.forEach(user -&gt; {</span>
+<span class="nc" id="L22">            user.getEmails().forEach(email -&gt; rs.put(email, user.getName()));</span>
+<span class="nc" id="L23">        });</span>
+<span class="nc" id="L24">        return rs;</span>
+    }
+
+    private static class User {
+        private String name;
+        private TreeSet&lt;String&gt; emails;
+
+<span class="nc" id="L31">        User(String name, TreeSet&lt;String&gt; emails) {</span>
+<span class="nc" id="L32">            this.name = name;</span>
+<span class="nc" id="L33">            this.emails = emails;</span>
+<span class="nc" id="L34">        }</span>
+
+        String getName() {
+<span class="nc" id="L37">            return name;</span>
+        }
+
+        TreeSet&lt;String&gt; getEmails() {
+<span class="nc" id="L41">            return emails;</span>
+        }
+
+        public static void main(String[] args) {
+<span class="nc" id="L45">            TreeSet&lt;String&gt; emails1 = new TreeSet&lt;&gt;(Arrays.asList(&quot;mail1&quot;, &quot;mail2&quot;));</span>
+<span class="nc" id="L46">            TreeSet&lt;String&gt; emails2 = new TreeSet&lt;&gt;(Arrays.asList(&quot;mail2&quot;, &quot;mail3&quot;));</span>
+<span class="nc" id="L47">            ArrayList&lt;User&gt; source = new ArrayList&lt;&gt;(Arrays.asList(new User(&quot;user1&quot;, emails1),</span>
+                    new User(&quot;user2&quot;, emails2)));
+<span class="nc" id="L49">            System.out.println(new Process().process(source));</span>
+<span class="nc" id="L50">        }</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
