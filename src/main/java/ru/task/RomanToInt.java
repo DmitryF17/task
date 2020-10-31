@@ -1,5 +1,9 @@
 package ru.task;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 /**
  * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
  * Symbol       Value
@@ -45,40 +49,52 @@ package ru.task;
  * If C comes before D or M, subtract 100 eg: CD = 400 and CM = 900
  */
 public class RomanToInt {
-    private int romanToInt(String s) {
-        int res = 0;
-        String[] sr = s.split("XL");
-        if (sr == null) {
-            res += 40;
-        }
-            for (String ind : sr) {
-                System.out.println(ind);
+    private static Map<String, Integer> revers;
+    private static Map<String, Integer> revers1;
+    private int res = 0;
+    private String sourc;
+
+    private RomanToInt(String st) { this.sourc = st; }
+
+    private void setSourc(String st) { this.sourc = st; }
+
+    private int romanToInt() {
+        revers1.keySet().forEach(key -> {
+            if (sourc.contains(key)) {
+                res += revers1.get(key);
             }
-
-        for (String ind : sr) {
-            char[] ind1 = ind.toCharArray();
-            for (char t : ind1) {
-                switch (t) {
-                    case 'I':
-                        res++;
-                        break;
-                    case 'V':
-                        res += 5;
-                        break;
-                }
-
+           setSourc(sourc.replace(key, " "));
+        });
+        char[] sr = sourc.toCharArray();
+        for (char temp : sr) {
+            if (revers.containsKey(String.valueOf(temp))) {
+                res = res + revers.get(String.valueOf(temp));
             }
-            /**   res = s.replace("XL", "40");
-             *  res.replace("XC", "90");
-             */
-
         }
         return res;
     }
-        public static void main(String[] args) {
 
-            int res = new RomanToInt().romanToInt("IV");
-            System.out.println(res);
-        }
+    public static void main(String[] args) {
+        revers = new HashMap<>();
+        revers.put("I", 1);
+        revers.put("V", 5);
+        revers.put("X", 10);
+        revers.put("L", 50);
+        revers.put("C", 100);
+        revers.put("D", 50);
+        revers.put("M", 1000);
+        revers1 = new HashMap<>();
+        revers1.put("IV", 4);
+        revers1.put("IX", 9);
+        revers1.put("XL", 40);
+        revers1.put("XC", 90);
+        revers1.put("CD", 400);
+        revers1.put("CM", 900);
+        Scanner in = new Scanner(System.in);
+        System.out.println("Roman number");
+        String romannumber =in.nextLine();
+        int res = new RomanToInt(romannumber).romanToInt();
+        System.out.println(res);
+    }
 
 }
