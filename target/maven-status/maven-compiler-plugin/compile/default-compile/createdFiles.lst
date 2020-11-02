@@ -1,12 +1,12 @@
-ru\task\Singlenumber.class
-ru\task\Parentheses.class
 ru\task\Process$User.class
-ru\task\Process.class
-ru\task\Analize$User.class
 ru\task\Analize.class
 ru\task\Palindrome.class
 ru\task\Comparemerge.class
 ru\task\Article.class
 ru\task\Analize$Info.class
 ru\task\FreezeStr.class
+ru\task\Singlenumber.class
+ru\task\Parentheses.class
+ru\task\Process.class
+ru\task\Analize$User.class
 ru\task\RomanToInt.class

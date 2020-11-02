@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RomanToInt.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task</a> &gt; <a href="index.source.html" class="el_package">ru.task</a> &gt; <span class="el_source">RomanToInt.java</span></div><h1>RomanToInt.java</h1><pre class="source lang-java linenums">package ru.task;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 /**
  * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
  * Symbol       Value
@@ -44,42 +48,54 @@
  * If X comes before L or C, subtract 10 eg: XL = 40 and XC = 90
  * If C comes before D or M, subtract 100 eg: CD = 400 and CM = 900
  */
-<span class="nc" id="L47">public class RomanToInt {</span>
-    private int romanToInt(String s) {
-<span class="nc" id="L49">        int res = 0;</span>
-<span class="nc" id="L50">        String[] sr = s.split(&quot;XL&quot;);</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (sr == null) {</span>
-<span class="nc" id="L52">            res += 40;</span>
-        }
-<span class="nc bnc" id="L54" title="All 2 branches missed.">            for (String ind : sr) {</span>
-<span class="nc" id="L55">                System.out.println(ind);</span>
+public class RomanToInt {
+    private static Map&lt;String, Integer&gt; revers;
+    private static Map&lt;String, Integer&gt; revers1;
+<span class="nc" id="L54">    private int res = 0;</span>
+    private String sourc;
+
+<span class="nc" id="L57">    private RomanToInt(String st) { this.sourc = st; }</span>
+
+<span class="nc" id="L59">    private void setSourc(String st) { this.sourc = st; }</span>
+
+    private int romanToInt() {
+<span class="nc" id="L62">        revers1.keySet().forEach(key -&gt; {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (sourc.contains(key)) {</span>
+<span class="nc" id="L64">                res += revers1.get(key);</span>
             }
-
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        for (String ind : sr) {</span>
-<span class="nc" id="L59">            char[] ind1 = ind.toCharArray();</span>
-<span class="nc bnc" id="L60" title="All 2 branches missed.">            for (char t : ind1) {</span>
-<span class="nc bnc" id="L61" title="All 3 branches missed.">                switch (t) {</span>
-                    case 'I':
-<span class="nc" id="L63">                        res++;</span>
-<span class="nc" id="L64">                        break;</span>
-                    case 'V':
-<span class="nc" id="L66">                        res += 5;</span>
-                        break;
-                }
-
+<span class="nc" id="L66">           setSourc(sourc.replace(key, &quot; &quot;));</span>
+<span class="nc" id="L67">        });</span>
+<span class="nc" id="L68">        char[] sr = sourc.toCharArray();</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        for (char temp : sr) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (revers.containsKey(String.valueOf(temp))) {</span>
+<span class="nc" id="L71">                res = res + revers.get(String.valueOf(temp));</span>
             }
-            /**   res = s.replace(&quot;XL&quot;, &quot;40&quot;);
-             *  res.replace(&quot;XC&quot;, &quot;90&quot;);
-             */
-
         }
-<span class="nc" id="L76">        return res;</span>
+<span class="nc" id="L74">        return res;</span>
     }
-        public static void main(String[] args) {
 
-<span class="nc" id="L80">            int res = new  RomanToInt().romanToInt(&quot;IV&quot;);</span>
-<span class="nc" id="L81">            System.out.println(res);</span>
-<span class="nc" id="L82">        }</span>
+    public static void main(String[] args) {
+<span class="nc" id="L78">        revers = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L79">        revers.put(&quot;I&quot;, 1);</span>
+<span class="nc" id="L80">        revers.put(&quot;V&quot;, 5);</span>
+<span class="nc" id="L81">        revers.put(&quot;X&quot;, 10);</span>
+<span class="nc" id="L82">        revers.put(&quot;L&quot;, 50);</span>
+<span class="nc" id="L83">        revers.put(&quot;C&quot;, 100);</span>
+<span class="nc" id="L84">        revers.put(&quot;D&quot;, 50);</span>
+<span class="nc" id="L85">        revers.put(&quot;M&quot;, 1000);</span>
+<span class="nc" id="L86">        revers1 = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L87">        revers1.put(&quot;IV&quot;, 4);</span>
+<span class="nc" id="L88">        revers1.put(&quot;IX&quot;, 9);</span>
+<span class="nc" id="L89">        revers1.put(&quot;XL&quot;, 40);</span>
+<span class="nc" id="L90">        revers1.put(&quot;XC&quot;, 90);</span>
+<span class="nc" id="L91">        revers1.put(&quot;CD&quot;, 400);</span>
+<span class="nc" id="L92">        revers1.put(&quot;CM&quot;, 900);</span>
+<span class="nc" id="L93">        Scanner in = new Scanner(System.in);</span>
+<span class="nc" id="L94">        System.out.println(&quot;Roman number&quot;);</span>
+<span class="nc" id="L95">        String romannumber =in.nextLine();</span>
+<span class="nc" id="L96">        int res = new RomanToInt(romannumber).romanToInt();</span>
+<span class="nc" id="L97">        System.out.println(res);</span>
+<span class="nc" id="L98">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
