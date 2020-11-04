@@ -1,16 +1,14 @@
 package ru.task.sort;
 
-import java.util.Arrays;
-
 public class BubbleSort {
 
-    int[] sourc;
+    private int[] sourc;
 
-    public BubbleSort(int[] ints) {
+    private BubbleSort(int[] ints) {
         this.sourc = ints;
     }
 
-    void bubblesort() {
+    private void bubblesort() {
         for (int index = sourc.length - 1; index > 1; index--) {
             for (int indexrevers = 0; indexrevers < index; indexrevers++) {
                 if (sourc[indexrevers] > sourc[indexrevers + 1]) {
