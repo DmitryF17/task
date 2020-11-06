@@ -1,4 +1,4 @@
-package ru.task;
+package ru.task.leetcode;
 
 /**
  * Given a string, determine if it is a palindrome,
@@ -25,7 +25,9 @@ public class Palindrome {
     public static void main(String[] args) {
         var s = new Palindrome().isPalindrome("A man, a plan, a canal: Panama");
         var s1 = new Palindrome().isPalindrome("`l;`` 1o1 ??;l`");
+        var s2 = new Palindrome().isPalindrome("The bad string");
         System.out.println(s);
         System.out.println(s1);
+        System.out.println(s2);
     }
 }
