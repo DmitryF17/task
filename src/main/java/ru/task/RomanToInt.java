@@ -54,27 +54,15 @@ public class RomanToInt {
     private int res = 0;
     private String sourc;
 
-    private RomanToInt(String st) { this.sourc = st; }
-
-    private void setSourc(String st) { this.sourc = st; }
-
-    private int romanToInt() {
-        revers1.keySet().forEach(key -> {
-            if (sourc.contains(key)) {
-                res += revers1.get(key);
-            }
-           setSourc(sourc.replace(key, " "));
-        });
-        char[] sr = sourc.toCharArray();
-        for (char temp : sr) {
-            if (revers.containsKey(String.valueOf(temp))) {
-                res = res + revers.get(String.valueOf(temp));
-            }
-        }
-        return res;
+    private RomanToInt(String st) {
+        this.sourc = st;
     }
 
-    public static void main(String[] args) {
+    private void setSourc(String st) {
+        this.sourc = st;
+    }
+
+    static {
         revers = new HashMap<>();
         revers.put("I", 1);
         revers.put("V", 5);
@@ -90,11 +78,30 @@ public class RomanToInt {
         revers1.put("XC", 90);
         revers1.put("CD", 400);
         revers1.put("CM", 900);
+    }
+
+    private int romanToInt() {
+        revers1.keySet().forEach(key -> {
+            if (sourc.contains(key)) {
+                res += revers1.get(key);
+            }
+            setSourc(sourc.replace(key, " "));
+        });
+        char[] sr = sourc.toCharArray();
+        for (char temp : sr) {
+            var key = String.valueOf(temp);
+            if (revers.containsKey(key)) {
+                res += revers.get(key);
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Roman number");
-        String romannumber =in.nextLine();
+        String romannumber = in.nextLine();
         int res = new RomanToInt(romannumber).romanToInt();
         System.out.println(res);
     }
-
 }
